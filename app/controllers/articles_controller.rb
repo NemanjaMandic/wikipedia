@@ -7,11 +7,11 @@ class ArticlesController < ApplicationController
     def show
     end
     def new
-        @article = Article.new
+        @article = curent_user.articles.build
     end
     
     def create
-        @article = Article.new(article_params)
+        @article = curent_user.articles.build(article_params)
         if @article.save
             flash[:success] = "Uspesno si napravio neki kurac!"
             redirect_to @article 

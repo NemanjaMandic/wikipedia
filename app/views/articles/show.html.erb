@@ -5,3 +5,5 @@
 <p><%= @article.content %></p>
 
 <%= link_to "Nazad", root_path %>
+<%= link_to "Izmeni", edit_article_path(@article) %>
+<%= link_to "Obrisi", article_path(@article), method: :delete, data: { confirm: "Jesi siguran?" } %>

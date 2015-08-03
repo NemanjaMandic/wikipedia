@@ -12,7 +12,15 @@
        <p class="alert"><%= alert %></p>
       
        <div class="container">
+           
           <%= yield %>
+          
+         <ul>
+             <li><%= link_to "Svi Clanci", root_path %></li>
+              <% Category.all.each do |category| %>
+              <li><%= link_to category.name, articles_path(category: category.name) %></li>
+          <% end %>
+         </ul>
        </div>
 
 

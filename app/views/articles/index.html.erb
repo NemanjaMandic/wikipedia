@@ -1,9 +1,13 @@
-<h1>Jebi si mateeer</h1>
+
 
 <% @clanci.each do |artikl| %>
-  <h2><%= artikl.title %></h2>
+  <h2><%= link_to artikl.title, artikl %></h2>
   <p>Published at <%= artikl.created_at.strftime('%b %d, %Y') %></p>
   <p><%= truncate(artikl.content, length: 200) %></p>
 <% end %>
-<%= link_to "Novi Clanak", new_article_path %>
+
+<% if user_signed_in? %>
+  <%= link_to "Novi Clanak", new_article_path %>
+<% end %>
+
 

@@ -6,8 +6,6 @@
   <p><%= truncate(artikl.content, length: 200) %></p>
 <% end %>
 
-<% if user_signed_in? %>
-  <%= link_to "Novi Clanak", new_article_path %>
-<% end %>
+
 
 

@@ -7,20 +7,45 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+     <!-- Brand and toggle get grouped for better mobile display -->
+   
+      
+      <%= link_to "Wikipedia", root_path, class: "navbar-brand" %>
+      <% if !user_signed_in? %>
+         <li><%= link_to "Uloguj se", new_user_session_path %></li>
+      <% else %>
+         <li><%= link_to "Odjavi se", destroy_user_session_path, method: :delete %></li>
+      <% end %>
+      <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+           <li><%= link_to "Novi Clanak", new_article_path %></li>
+          <% end %>
+      </ul>
+  
+  </div>
+ </nav>
        <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
       
        <div class="container">
-           
-          <%= yield %>
+         <div class="row">
+             <div class="col-md-8">
+                  <%= yield %>
+             </div>
+             <div class="col-md-4">
+                  <ul class="list-group">
+                     <li class="list-group-item"><%= link_to "Svi Clanci", root_path %></li>
+                      <% Category.all.each do |category| %>
+                      <li class="list-group-item"><%= link_to category.name, articles_path(category: category.name) %></li>
+                <% end %>
+                  </ul>
+             </div>
+         </div>
+         
           
-         <ul>
-             <li><%= link_to "Svi Clanci", root_path %></li>
-              <% Category.all.each do |category| %>
-              <li><%= link_to category.name, articles_path(category: category.name) %></li>
-          <% end %>
-         </ul>
+        
        </div>
 
 
